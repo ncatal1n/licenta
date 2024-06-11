@@ -1,4 +1,4 @@
 ## Proiect Licenta : ImgVault
 
-Proiectul pentru licenta: Bostinaru-Nicolae-Catalin
+Proiectul pentru licenta: Bostinaru Nicolae-Catalin
 
