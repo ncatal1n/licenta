@@ -69,6 +69,12 @@
     }
 
     async function livewireUploadChunk(file, start) {
+        const ALLOWED_TYPES = ["png", "jpg", "jpeg", "webp"];
+        if (!ALLOWED_TYPES.includes(file.type.split('/')[1])) {
+            @this.invalidFile();
+            return;
+        }
+
         let sendchunktimeout = file.size >= (10 * Math.pow(10, 6)) ? 100 : 50;
         if (start != 0) {
             await delay(sendchunktimeout);

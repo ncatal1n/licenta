@@ -18,7 +18,8 @@ class ImageUploader extends Component
 
     protected $limits = [
         "size" => 10000000, //10 MB
-        "expirations" => [1, 7]
+        "expirations" => [1, 7],
+        "allowed_types" => ["png", "jpg", "jpeg", "webp"]
     ];
 
     public $status;
@@ -85,6 +86,11 @@ class ImageUploader extends Component
         if ($curSize == $this->fileSize) {
             $this->finalFile =
                 TemporaryUploadedFile::createFromLivewire('/' . $this->fileName);
+                if(!in_array(explode('/',$this->finalFile->getMimeType())[1], $this->limits["allowed_types"]))
+                {
+                    $this->invalidFile();
+                    return;
+                }
             $this->status = "done";
         }
     }
